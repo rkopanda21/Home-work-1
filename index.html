@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<!-- 
+Program Name: patient-form-html
+Author: Zakria Abbasi
+Date Created: 9/15/2025
+Date Last Edited: 11/14/2025
+Version: 3.0
+Description: Patient registration form with review, validation, sliders
+-->
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Abbasi Medical Care - Patient Registration</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+
+<body>
+  
+  <div id="banner">
+    <table style="width: 100%;">
+      <tr>
+        <td><img src="logo3.png" alt="Abbasi Medical Care Logo" width="250"></td>
+        <td style="padding-left:15px; text-align:left;">
+          <h2>Abbasi Medical Care</h2>
+          <div id="date"></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <center>
+    <div class="form-header">
+      <h2>Hospital Registration Form</h2>
+    </div>
+  </center>
+
+  <div class="layout">
+  <form id="patientForm" action="thankyou.html" method="get" novalidate>
+    <table>
+   
+      <tr>
+        <td><label for="UserID">User ID: <span class="required">*</span></label></td>
+        <td>
+          <input type="text" id="UserID" name="UserID" required
+                 title="5–20 chars; start with a letter; letters, numbers, underscore, or dash; no spaces"
+                 pattern="^[A-Za-z][A-Za-z0-9_-]{4,19}$">
+          <span class="error-message" id="UserID-error"></span>
+        </td>
+
+        <td><label for="Password">Password: <span class="required">*</span></label></td>
+        <td>
+          <input type="password" id="Password" name="Password" required
+                 title="8–30 chars; include upper, lower, digit, and special; no double quotes"
+                 pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#%^&*()\-\_=+\\/><\.,`~])(?!.*\").{8,30}$">
+          <span class="error-message" id="Password-error"></span>
+        </td>
+      </tr>
+
+      <tr>
+        <td><label for="RPassword">Re-enter Password: <span class="required">*</span></label></td>
+        <td>
+          <input type="password" id="RPassword" name="RPassword" required
+                 title="Must exactly match the Password field">
+          <span class="error-message" id="RPassword-error"></span>
+        </td>
+
+        <td><label for="fname">First Name: <span class="required">*</span></label></td>
+        <td>
+          <input type="text" id="fname" name="fname" required
+                 title="1–30 characters; letters, apostrophes, and dashes only"
+                 pattern="^[A-Za-z'\-]{1,30}$">
+          <span class="error-message" id="fname-error"></span>
+        </td>
+      </tr>
+
+      <tr>
+        <td><label for="mi">Middle Initial:</label></td>
+        <td>
+          <input type="text" id="mi" name="mi" maxlength="1"
+                 title="Blank or exactly 1 letter"
+                 pattern="^[A-Za-z]?$">
+          <span class="error-message" id="mi-error"></span>
+        </td>
+
+        <td><label for="lname">Last Name: <span class="required">*</span></label></td>
+        <td>
+          <input type="text" id="lname" name="lname" required
+                 title="1–30 characters; letters, apostrophes, dashes; optional '2nd', '3rd', '4th', or '5th'"
+                 pattern="^(?=.{1,30}$)[A-Za-z'\-]+(?:(?:\s)?(?:2nd|3rd|4th|5th))?$">
+          <span class="error-message" id="lname-error"></span>
+        </td>
+      </tr>
+
+      <tr>
+        <td><label for="dob">Date of Birth (MM/DD/YYYY): <span class="required">*</span></label></td>
+        <td>
+          <input type="date" id="dob" name="dob" required
+                 title="Not in the future and not more than 120 years ago">
+          <span class="error-message" id="dob-error"></span>
+        </td>
+      </tr>
+
+      <tr>
+        <td><label for="email">Email Address: <span class="required">*</span></label></td>
+        <td>
+          <input type="email" id="email" name="email" required
+                 title="Format: name@domain.tld"
+                 pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$">
+          <span class="error-message" id="email-error"></span>
+        </td>
+
+        <td><label for="phone">Phone Number: <span class="required">*</span></label></td>
+        <td>
+          <input type="tel" id="phone" name="phone" required
+                 title="Format: 000-000-0000"
+                 placeholder="000-000-0000"
+                 pattern="^\d{3}-\d{3}-\d{4}$">
+          <span class="error-message" id="phone-error"></span>
+        </td>
+      </tr>
+
+      <tr>
+        <td><label for="homeAddress1">Address Line 1: <span class="required">*</span></label></td>
+        <td>
+          <input type="text" id="homeAddress1" name="homeAddress1" required
+                 title="2–30 characters"
+                 minlength="2" maxlength="30">
+          <span class="error-message" id="homeAddress1-error"></span>
+        </td>
+
+        <td><label for="homeAddress2">Address Line 2:</label></td>
+        <td>
+          <input type="text" id="homeAddress2" name="homeAddress2"
+                 title="If entered, must be 2–30 characters"
+                 pattern="^$|^.{2,30}$">
+          <span class="error-message" id="homeAddress2-error"></span>
+        </td>
+      </tr>
+
+      <tr>
+        <td><label for="city">City: <span class="required">*</span></label></td>
+        <td>
+          <input type="text" id="city" name="city" required
+                 title="2–30 characters"
+                 minlength="2" maxlength="30">
+          <span class="error-message" id="city-error"></span>
+        </td>
+
+        <td><label for="state">State: <span class="required">*</span></label></td>
+        <td>
+          <select id="state" name="state" required title="Choose a U.S. state">
+            <option value="">-- Select State --</option>
+            <option>AL</option><option>AK</option><option>AZ</option><option>AR</option>
+            <option>CA</option><option>CO</option><option>CT</option><option>DE</option><option>DC</option>
+            <option>FL</option><option>GA</option><option>HI</option><option>ID</option><option>IL</option>
+            <option>IN</option><option>IA</option><option>KS</option><option>KY</option><option>LA</option>
+            <option>ME</option><option>MD</option><option>MA</option><option>MI</option><option>MN</option>
+            <option>MS</option><option>MO</option><option>MT</option><option>NE</option><option>NV</option>
+            <option>NH</option><option>NJ</option><option>NM</option><option>NY</option><option>NC</option>
+            <option>ND</option><option>OH</option><option>OK</option><option>OR</option><option>PA</option>
+            <option>RI</option><option>SC</option><option>SD</option><option>TN</option><option>TX</option>
+            <option>UT</option><option>VT</option><option>VA</option><option>WA</option><option>WV</option>
+            <option>WI</option><option>WY</option><option>PR</option>
+          </select>
+          <span class="error-message" id="state-error"></span>
+        </td>
+      </tr>
+
+      <tr>
+        <td><label for="zip">Zip Code: <span class="required">*</span></label></td>
+        <td>
+          <input type="text" id="zip" name="zip" required
+                 title="5 digits only"
+                 maxlength="5"
+                 pattern="^\d{5}$">
+          <span class="error-message" id="zip-error"></span>
+        </td>
+
+        <td><label for="ssn">SSN (optional):</label></td>
+        <td>
+          <input type="password" id="ssn" name="ssn"
+                 title="Format: 000-00-0000"
+                 placeholder="000-00-0000"
+                 pattern="^\d{3}-\d{2}-\d{4}$">
+          <span class="error-message" id="ssn-error"></span>
+        </td>
+      </tr>
+
+      <tr>
+        <td><label>Vaccines Received:</label></td>
+        <td colspan="3">
+          <input type="checkbox" id="covid" name="vaccines" value="COVID-19"><label for="covid"> COVID-19</label>
+          <input type="checkbox" id="flu" name="vaccines" value="Flu"><label for="flu"> Flu</label>
+          <input type="checkbox" id="measles" name="vaccines" value="Measles"><label for="measles"> Measles</label>
+          <input type="checkbox" id="tetanus" name="vaccines" value="Tetanus"><label for="tetanus"> Tetanus</label>
+          <input type="checkbox" id="chickenpox" name="vaccines" value="Chickenpox"><label for="chickenpox"> Chickenpox</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td><label>Gender:</label></td>
+        <td colspan="3">
+          <input type="radio" id="male" name="gender" value="Male"><label for="male"> Male</label>
+          <input type="radio" id="female" name="gender" value="Female"><label for="female"> Female</label>
+          <input type="radio" id="preferNotSay" name="gender" value="Prefer not to say"><label for="preferNotSay"> Prefer not to say</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td><label>Do you have insurance?</label></td>
+        <td colspan="3">
+          <input type="radio" id="insYes" name="insurance" value="Yes"><label for="insYes"> Yes</label>
+          <input type="radio" id="insNo" name="insurance" value="No"><label for="insNo"> No</label>
+          <input type="radio" id="insUnsure" name="insurance" value="Unsure"><label for="insUnsure"> Unsure</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td><label>Are you pregnant?</label></td>
+        <td colspan="3">
+          <input type="radio" id="pregYes" name="pregnant" value="Yes"><label for="pregYes"> Yes</label>
+          <input type="radio" id="pregNo" name="pregnant" value="No"><label for="pregNo"> No</label>
+          <input type="radio" id="pregNA" name="pregnant" value="Not Applicable"><label for="pregNA"> Not Applicable</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td><label for="pain">Pain Level (1–10):</label></td>
+        <td>
+          <input type="range" id="pain" name="pain" min="1" max="10" value="5" title="Slide to set pain level">
+          <span id="painValue">5</span>
+          <span class="error-message" id="pain-error"></span>
+        </td>
+
+        <td><label for="weight">Current Body Weight (lbs):</label></td>
+        <td>
+          <input type="range" id="weight" name="weight" min="5" max="400" step="1" value="150"
+                 title="Slide to select your current body weight">
+          <span id="weightValue">150 lbs</span>
+          <span class="error-message" id="weight-error"></span>
+        </td>
+      </tr>
+
+      <tr>
+        <td><label for="symptoms">Current Symptoms:</label></td>
+        <td colspan="3">
+          <textarea id="symptoms" name="symptoms" rows="4" cols="40"
+                    placeholder="Describe your symptoms (optional)"
+                    title='Optional; avoid using double quotes (")'
+                    pattern="^(?:(?!\").)*$"></textarea>
+          <span class="error-message" id="symptoms-error"></span>
+        </td>
+      </tr>
+    </table>
+
+    <div class="actions">
+      <input type="button" id="validateBtn" value="Validate">
+      <input type="submit" id="submitBtn" value="Submit" style="display:none;">
+      <button type="button" id="reviewBtn">Review</button>
+      <input type="reset" id="resetBtn" value="Clear">
+    </div>
+  </form>
+
+  <div id="review-section" aria-live="polite">
+    <h3>Review Your Information</h3>
+    <div id="review-output"></div>
+  </div>
+  </div>
+
+  <div id="bottom">
+    <p>Abbasi Medical Care © 2025</p>
+    <button onclick="window.location.href='mailto:contact@abbasisite.example'">Contact Us</button>
+  </div>
+</body>
+</html>
